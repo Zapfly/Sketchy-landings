@@ -61,14 +61,17 @@ class TitleScene extends Phaser.Scene{
 
         
         startMenuButton.on(`pointerdown`, () => { 
+            
+                this.cameras.main.fadeOut(500, 0, 0, 0);
+                this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
+                    this.scene.start('Level1', {fadeIn: true})
+                    this.time.delayedCall(500, () => {
+                    })
+                })
             game.scene.transition('MyGame', 2000)
         });
         continueMenuButton.on(`pointerdown`, () => console.log("hello from Start Menu"));        
 
-        let wKey = this.input.keyboard.addKey('W')
-        wKey.on('down', () => {
-            console.log('hello from TitleScene')
-        })
 
     }
 

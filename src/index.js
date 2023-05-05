@@ -2,6 +2,8 @@ import Phaser from 'phaser';
 import logoImg from './assets/logo.png';
 import background from './assets/background-castle.jpg'
 import TitleScene from './scenes/TitleScene'
+import Level1 from './scenes/Level1'
+
 import WebFont from 'webfontloader';
 
 
@@ -70,13 +72,13 @@ class MyGame extends Phaser.Scene
 
         this.input.on('pointerup', () => {
             this.cameras.main.fadeOut(500, 0, 0, 0);
+            this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
+                this.scene.start('TitleScene', {fadeIn: true})
+                this.time.delayedCall(500, () => {
+                })
+            })
         });
 
-        this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
-            this.scene.start('TitleScene', {fadeIn: true})
-            // this.time.delayedCall(500, () => {
-            // })
-        })
     }
     update() {
 
@@ -91,10 +93,15 @@ const config = {
     parent: 'phaser-example',
     width: 800,
     height: 600,
-    dom: {
-        createContainer: true
+    physics: {
+        default: 'arcade',
+        arcade: {
+            gravity: { y: 100 },
+            debug: true
+        }
     },
-    scene: [MyGame, TitleScene]
+
+    scene: [MyGame, TitleScene, Level1]
 };
 
 const game = new Phaser.Game(config);
