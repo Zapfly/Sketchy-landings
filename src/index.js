@@ -7,15 +7,6 @@ import Level1 from './scenes/Level1'
 import WebFont from 'webfontloader';
 
 
-// function loadFont(name, url) {
-//     var newFont = new FontFace(name, `url(${url})`);
-//     newFont.load().then(function (loaded) {
-//         document.fonts.add(loaded);
-//     }).catch(function (error) {
-//         return error;
-//     });
-// }
-
 class MyGame extends Phaser.Scene
 {
     constructor ()
@@ -106,7 +97,7 @@ const config = {
 
 const game = new Phaser.Game(config);
 // game.scene.add('MyGame', MyGame);
-game.scene.start('MyGame')
+// game.scene.start('Level1')
 
 // game.scene.add('TitleScene', TitleScene);
 // game.scene.start('TitleScene')
