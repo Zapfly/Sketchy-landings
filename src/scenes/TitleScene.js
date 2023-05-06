@@ -17,6 +17,10 @@ class TitleScene extends Phaser.Scene{
 
     }
     preload() {
+        this.load.on('complete', function () {
+            console.log("TitleScene is Loaded")
+        });
+
         this.load.image('background_image',);
         this.load.image('background-castle', background);
         this.load.image('start button', startButton)

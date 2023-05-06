@@ -15,6 +15,18 @@ class MyGame extends Phaser.Scene
     }
 
     preload() {
+        this.load.on('progress', function (value) {
+            console.log(value);
+        });
+                    
+        this.load.on('fileprogress', function (file) {
+            console.log(file.src);
+        });
+        this.load.on('complete', function () {
+            console.log("Game scene has loaded")
+        });
+
+
         this.load.image('logo', logoImg);
         this.load.image('background', background);
 
@@ -55,7 +67,6 @@ class MyGame extends Phaser.Scene
             loop: 0
         });
 
-        console.log("Game scene has loaded")
 
         // let menuButton = this.add.dom(200, 200, 'div', 'background-color: green;')
 
@@ -92,7 +103,7 @@ const config = {
         }
     },
 
-    scene: [MyGame, TitleScene, Level1]
+    scene: [Level1, MyGame, TitleScene]
 };
 
 const game = new Phaser.Game(config);
