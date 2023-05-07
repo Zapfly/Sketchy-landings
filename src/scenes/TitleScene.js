@@ -48,13 +48,13 @@ class TitleScene extends Phaser.Scene{
         let buttons = this.add.group();
 
         let startMenuButton = buttons.create(400, 0, 'start button').setInteractive();
-        let continueMenuButton = buttons.create(400, 0, 'continue button').setInteractive();
-        let howToPlayMenuButton = buttons.create(400, 0, 'how to play button').setInteractive();
+        // let continueMenuButton = buttons.create(400, 0, 'continue button').setInteractive();
+        // let howToPlayMenuButton = buttons.create(400, 0, 'how to play button').setInteractive();
 
         let mainMenu = [
             startMenuButton,
-            continueMenuButton,
-            howToPlayMenuButton
+            // continueMenuButton,
+            // howToPlayMenuButton
         ]
         let menuIncrement = 200
         
@@ -64,8 +64,7 @@ class TitleScene extends Phaser.Scene{
         } )
 
         
-        startMenuButton.on(`pointerdown`, () => { 
-            
+        startMenuButton.on(`pointerdown`, () => {             
                 this.cameras.main.fadeOut(500, 0, 0, 0);
                 this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
                     this.scene.start('Level1', {fadeIn: true})
@@ -74,7 +73,7 @@ class TitleScene extends Phaser.Scene{
                 })
             game.scene.transition('MyGame', 2000)
         });
-        continueMenuButton.on(`pointerdown`, () => console.log("hello from Start Menu"));        
+        // continueMenuButton.on(`pointerdown`, () => console.log("hello from Start Menu"));        
 
 
     }

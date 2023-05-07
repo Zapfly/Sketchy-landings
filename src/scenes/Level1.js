@@ -4,8 +4,10 @@ import lander from '../assets/eyelander.png'
 import platform from '../assets/platform.png'
 import tiles from '../assets/tiles.png'
 import tilemap from '../assets/level1/sketchyLanderLevel-1.json'
+import newGameButton from '../assets/new-game-button.png'
 
-let youDied = (deadPlayer, message) => {
+
+let youDied = (deadPlayer, message, retryButton) => {
     console.log('you Died (callback function)')
 
     // deadPlayer.visible = false
@@ -15,9 +17,13 @@ let youDied = (deadPlayer, message) => {
     deadPlayer.body.position.y = deadPlayer.body.position.y - 5
     // deadPlayer.body.setImmovable(true)
     message.visible = true
+    retryButton.visible = true
 
     message.x = deadPlayer.body.position.x
     message.y = deadPlayer.body.position.y - 30
+    retryButton.x = 400
+    retryButton.y = 300
+
 
     return deadPlayer.data.alive
 
@@ -43,6 +49,8 @@ class Level1 extends Phaser.Scene{
             startingY: 400,
             winState: false
         }
+        this.load.image('new game button', newGameButton)
+
 
     }
 
@@ -102,16 +110,42 @@ class Level1 extends Phaser.Scene{
         this.startingPlatform.setTint(0xff22ff)
         this.startingPlatform.setOrigin(0.5, 0.5)
 
+        this.tryAgainButton = this.add.sprite(400, 0, 'new game button').setInteractive();
+        let tryAgainButton = this.tryAgainButton
+        tryAgainButton.setOrigin(0.5, 0.5);
+        tryAgainButton.visible = false;
+
+        
+        
+        tryAgainButton.on(`pointerdown`, () => {
+            console.log(JSON.stringify(playerShip))
+            playerShip.x = levelConfig.startingX;            
+            playerShip.y = levelConfig.startingY- 28;
+            playerShip.setVelocityX(0);
+            playerShip.setVelocityY(0);
+            levelConfig = {
+                startingX: 150,
+                startingY: 400,
+                winState: false                
+            }
+            playerShip.data.alive = true;
+            tryAgainButton.visible = false
+            deathMessage.visible = false
+            playerShip.rotation = 0
+            
+        });
+
+
         let deathChecker = (player) =>{
             if(levelConfig.winState) return levelConfig.winState
             if(player.data.alive == true) {
                 if(player.body.velocity.y > 100 || player.body.velocity.x > 100 || player.rotation < -2 || player.rotation > 2) {
-                    return youDied(player, deathMessage)
+                    return youDied(player, deathMessage, tryAgainButton)
                 } else if (player.rotation > -1.5 && player.rotation < 1.5) {
                     player.rotation = player.rotation/2
+                    player.setVelocity(player.body.velocity.x/2, player.body.velocity.y)
+                    return player.data.alive
                 }
-                player.setVelocity(player.body.velocity.x/2, player.body.velocity.y)
-                return player.data.alive
     
             }
         }

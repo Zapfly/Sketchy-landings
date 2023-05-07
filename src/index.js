@@ -103,7 +103,7 @@ const config = {
         }
     },
 
-    scene: [Level1, MyGame, TitleScene]
+    scene: [MyGame, TitleScene, Level1,]
 };
 
 const game = new Phaser.Game(config);
