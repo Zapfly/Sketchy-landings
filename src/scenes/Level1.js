@@ -2,6 +2,8 @@ import game from '../index'
 import WebFont from 'webfontloader';
 import lander from '../assets/eyelander.png'
 import platform from '../assets/platform.png'
+import tiles from '../assets/tiles.png'
+import tilemap from '../assets/level1/sketchyLanderLevel-1.json'
 
 let youDied = (deadPlayer, message) => {
     console.log('you Died (callback function)')
