@@ -71,7 +71,7 @@ class TitleScene extends Phaser.Scene{
                     this.time.delayedCall(500, () => {
                     })
                 })
-            game.scene.transition('MyGame', 2000)
+            // game.scene.transition('MyGame', 2000)
         });
         // continueMenuButton.on(`pointerdown`, () => console.log("hello from Start Menu"));        
 
