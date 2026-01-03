@@ -84,7 +84,7 @@ class Level1 extends Phaser.Scene{
                 let instruction3 = this.add.text(this.levelConfig.startingX, this.levelConfig.startingY + 30, 'Steer using', { fontFamily: 'Montserrat', fontSize: 16 });
                 let instruction4 = this.add.text(this.levelConfig.startingX, this.levelConfig.startingY + 50, '"LEFT" and "RIGHT"', { fontFamily: 'Montserrat', fontSize: 16 });
                 deathMessage = this.add.text(this.levelConfig.startingX, this.levelConfig.startingY + 50, "Sorry Dude, you 'sploded", { fontFamily: 'Montserrat', fontSize: 16 });
-                victoryMessage = this.add.text(this.levelConfig.startingX, this.levelConfig.startingY + 50, "Congradulations! You Win!", { fontFamily: 'Montserrat', fontSize: 16 });
+                victoryMessage = this.add.text(this.levelConfig.startingX, this.levelConfig.startingY + 50, "Congratulations! You Win!", { fontFamily: 'Montserrat', fontSize: 16 });
                 instruction1.setOrigin(0.5, 0.5)
                 instruction2.setOrigin(0.5, 0.5)
                 instruction3.setOrigin(0.5, 0.5)
